@@ -24,80 +24,137 @@ struct ContentView: View {
     
     var body: some View {
         
-        if gameOver {
-            VStack(spacing: 25) { //game over screen
+        ZStack {
+            // Background
+            LinearGradient(
+                colors: [.purple, .blue],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+            
+            if gameOver {
                 
-                Text("Game Over")
-                    .font(.largeTitle)
-                    .bold()
+                // game over screen
+                VStack(spacing: 25) {
+                    
+                    Text("💀 GAME OVER 💀")
+                        .font(.system(size: 40))
+                        .bold()
+                        .foregroundColor(.red)
+                    
+                    Text("🏆 Final Score")
+                        .font(.title)
+                        .foregroundColor(.white)
+                    
+                    Text("\(score)")
+                        .font(.system(size: 50))
+                        .bold()
+                        .foregroundColor(.yellow)
+                    
+                    Button(action: resetGame) {
+                        Text("Play Again")
+                            .font(.title2)
+                            .bold()
+                            .foregroundColor(.white)
+                            .frame(width: 220, height: 60)
+                            .background(Color.green)
+                            .cornerRadius(20)
+                    }
+                }
                 
-                Text("Final Score: \(score)")
-                    .font(.title)
+            } else {
                 
-                Button(action: resetGame) {
-                    Text("Play Again")
+                // main game screen
+                VStack(spacing: 30) {
+                    
+                    Text("🎮 Tap Frenzy 🎮")
+                        .font(.system(size: 40, weight: .heavy))
+                        .foregroundColor(.white)
+                    
+                    Text("Tap as fast as you can!")
+                        .foregroundColor(.yellow)
+                        .italic()
+                    
+                    HStack(spacing: 20) {
+                        
+                        VStack {
+                            Text("🏆 Score")
+                            Text("\(score)")
+                                .font(.title)
+                                .bold()
+                        }
+                        
+                        VStack {
+                            Text("⏰ Time")
+                            Text("\(timeRemaining)")
+                                .font(.title)
+                                .bold()
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(.black.opacity(0.3))
+                    .cornerRadius(15)
+                    
+                    Text("🔥 Combo x\(multiplier)")
                         .font(.title2)
                         .bold()
-                        .foregroundColor(.white)
-                        .frame(width: 200, height: 60)
-                        .background(Color.green)
-                        .cornerRadius(15)
-                }
-            }
-        }
-        else {
-            
-            VStack(spacing: 30) { // game screen
-                
-                Text("Tap Frenzy")
-                    .font(.largeTitle)
+                        .foregroundColor(.yellow)
+                    
+                    Button(action: {
+                        handleTap()
+                    }) {
+                        Text("CLICK!")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.white)
+                            .frame(width: 180, height: 180)
+                            .background(buttonColor)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white, lineWidth: 5)
+                            )
+                            .shadow(radius: 10)
+                    }
+                    .disabled(gameOver)
+                    
+                    Text(
+                        buttonColor == .green ?
+                        "💚 BONUS!" :
+                        buttonColor == .gray ?
+                        "🩶 PENALTY!" :
+                        "💙 NORMAL"
+                    )
+                    .font(.headline)
                     .bold()
-                
-                Text("Score: \(score)")
-                    .font(.title)
-                
-                Text("Multiplier: x\(multiplier)")
-                    .font(.title3)
-                    .foregroundColor(.gray)
-                
-                Text("Time: \(timeRemaining)")
-                    .font(.title2)
-                
-                Button(action: {
-                    handleTap()
-                }) {
-                    Text("Click")
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundColor(.white)
-                        .frame(width: 200, height: 120)
-                        .background(buttonColor)
-                        .clipShape(Circle())
+                    .foregroundColor(buttonColor)
                 }
-                .disabled(gameOver)
-            }
-            .padding()
-            
-            // Timer
-            .onReceive(timer) { _ in
-                if timeRemaining > 0 {
-                    timeRemaining -= 1
-                } else {
-                    gameOver = true
+                .padding()
+                
+                // Countdown Timer
+                .onReceive(timer) { _ in
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    } else {
+                        gameOver = true
+                    }
                 }
-            }
-            
-            // change color every seconds
-            .onReceive(colorTimer) { _ in
-                if !gameOver {
-                    let colors: [Color] = [.green, .gray, .blue]
-                    buttonColor = colors.randomElement() ?? .blue
+                
+                // Button Colour Timer
+                .onReceive(colorTimer) { _ in
+                    if !gameOver {
+                        let colors: [Color] = [.green, .gray, .blue]
+                        buttonColor = colors.randomElement() ?? .blue
+                    }
                 }
             }
         }
     }
     
-        func handleTap() {
+    // Tap Logic
+    func handleTap() {
         let now = Date()
         
         if let lastTap = lastTapTime {
@@ -120,6 +177,8 @@ struct ContentView: View {
             score += 1 * multiplier
         }
     }
+    
+    // Reset Game
     func resetGame() {
         score = 0
         timeRemaining = 10
