@@ -26,14 +26,14 @@ struct ContentView: View {
                 // Navigation Buttons
                 VStack(spacing: 20) {
                     NavigationLink(destination: TapFrenzyView()) {
-                        MenuButtonView(title: " Tap Frenzy", subtitle: "Tap to score high", color: .orange) .frame(maxWidth: .infinity)
+                        MenuButtonView(title: " Tap Frenzy", subtitle: "Tap to score high", color: .orange)
                     }
                     
                     NavigationLink(destination: LightItUpView()) {
-                        MenuButtonView(title: " Light It Up", subtitle: "Tap before go dark", color: .blue).frame(maxWidth: .infinity)
+                        MenuButtonView(title: " Light It Up", subtitle: "Tap before go dark", color: .blue)
                     }
                     NavigationLink(destination: QuizRushView()) {
-                        MenuButtonView(title: " Quiz Rush ", subtitle: " live Trivia ", color: .green).frame(maxWidth: .infinity)
+                        MenuButtonView(title: " Quiz Rush ", subtitle: " live Trivia ", color: .green)
                     }
                 }
                 .padding(.horizontal, 30)
