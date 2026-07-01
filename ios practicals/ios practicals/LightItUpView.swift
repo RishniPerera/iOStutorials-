@@ -20,7 +20,14 @@ struct LightItUpView: View {
         else if timeRemaining <= 45 { return 2 } // 15-30s
         else { return 1 }                        // 0-15s
     }
-    
+    private var levelEnum: Level {
+            switch currentLevel {
+            case 1: return .L1
+            case 2: return .L2
+            case 3: return .L3
+            default: return .L4
+            }
+        }
     private var totalCards: Int {
         switch currentLevel {
         case 1: return 3   // 3 cards (row)
@@ -49,10 +56,11 @@ struct LightItUpView: View {
             }
             .padding(.horizontal)
             
-            Text("Level \(currentLevel)")
-                .font(.headline)
-                .foregroundColor(.blue)
             
+            
+            Text(levelEnum.rawValue)
+                            .font(.headline)
+                            .foregroundColor(levelEnum.glowColor)
             Spacer()
             
             if isGameActive {
@@ -60,11 +68,11 @@ struct LightItUpView: View {
                 LazyVGrid(columns: gridColumns, spacing: 15) {
                     ForEach(0..<totalCards, id: \.self) { index in
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(litCardIndex == index ? Color.blue : Color(.systemGray4))
+                            .fill(litCardIndex == index ? levelEnum.glowColor : Color(.systemGray4))
                             .frame(height: 100)
-                            .shadow(color: litCardIndex == index ? .blue.opacity(0.5) : .clear, radius: 8)
+                            .shadow(color: litCardIndex == index ? levelEnum.glowColor.opacity(0.5) : .clear, radius: 8)
                             .onTapGesture {
-                                handleTap(on: index)
+                            handleTap(on: index)
                             }
                     }
                 }
