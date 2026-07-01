@@ -14,7 +14,7 @@ struct ContentView: View {
                 
                 // App Title
                 VStack(spacing: 8) {
-                    Text("🕹️ Game Hub ")
+                    Text(" Game Hub ")
                         .font(.system(size: 36, weight: .black, design: .rounded))
                     Text("Select a game mode to begin")
                         .font(.subheadline)
@@ -26,11 +26,14 @@ struct ContentView: View {
                 // Navigation Buttons
                 VStack(spacing: 20) {
                     NavigationLink(destination: TapFrenzyView()) {
-                        MenuButtonView(title: "🔥 Tap Frenzy", subtitle: "Tap to score high", color: .orange)
+                        MenuButtonView(title: " Tap Frenzy", subtitle: "Tap to score high", color: .orange) .frame(maxWidth: .infinity)
                     }
                     
                     NavigationLink(destination: LightItUpView()) {
-                        MenuButtonView(title: "⚡ Light It Up", subtitle: "Tap before go dark", color: .blue)
+                        MenuButtonView(title: " Light It Up", subtitle: "Tap before go dark", color: .blue).frame(maxWidth: .infinity)
+                    }
+                    NavigationLink(destination: QuizRushView()) {
+                        MenuButtonView(title: " Quiz Rush ", subtitle: " live Trivia ", color: .green).frame(maxWidth: .infinity)
                     }
                 }
                 .padding(.horizontal, 30)
