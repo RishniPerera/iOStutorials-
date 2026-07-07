@@ -11,7 +11,7 @@ import SwiftUI
 struct ios_practicalsApp: App {
     var body: some Scene {
         WindowGroup {
-            TapFrenzyView()
+            HomeView()
         }
     }
 }
