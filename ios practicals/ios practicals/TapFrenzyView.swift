@@ -8,15 +8,13 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
-    
+struct TapFrenzyView: View {
+    @StateObject private var game = TapFrenzyVM()
     @State private var score = 0
     @State private var timeRemaining = 10
     @State private var gameOver = false
-    
     @State private var multiplier = 1
     @State private var lastTapTime: Date? = nil
-    
     @State private var buttonColor: Color = .blue
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -38,12 +36,12 @@ struct ContentView: View {
                 // game over screen
                 VStack(spacing: 25) {
                     
-                    Text("💀 GAME OVER 💀")
+                    Text("GAME OVER !")
                         .font(.system(size: 40))
                         .bold()
                         .foregroundColor(.red)
                     
-                    Text("🏆 Final Score")
+                    Text("Final Score")
                         .font(.title)
                         .foregroundColor(.white)
                     
@@ -68,7 +66,7 @@ struct ContentView: View {
                 // main game screen
                 VStack(spacing: 30) {
                     
-                    Text("🎮 Tap Frenzy 🎮")
+                    Text("Tap Frenzy ")
                         .font(.system(size: 40, weight: .heavy))
                         .foregroundColor(.white)
                     
@@ -79,14 +77,14 @@ struct ContentView: View {
                     HStack(spacing: 20) {
                         
                         VStack {
-                            Text("🏆 Score")
+                            Text("Score")
                             Text("\(score)")
                                 .font(.title)
                                 .bold()
                         }
                         
                         VStack {
-                            Text("⏰ Time")
+                            Text("Time")
                             Text("\(timeRemaining)")
                                 .font(.title)
                                 .bold()
@@ -97,7 +95,7 @@ struct ContentView: View {
                     .background(.black.opacity(0.3))
                     .cornerRadius(15)
                     
-                    Text("🔥 Combo x\(multiplier)")
+                    Text("Combo x\(multiplier)")
                         .font(.title2)
                         .bold()
                         .foregroundColor(.yellow)
@@ -122,10 +120,10 @@ struct ContentView: View {
                     
                     Text(
                         buttonColor == .green ?
-                        "💚 BONUS!" :
+                        "BONUS!" :
                         buttonColor == .gray ?
-                        "🩶 PENALTY!" :
-                        "💙 NORMAL"
+                        "PENALTY!" :
+                        "NORMAL"
                     )
                     .font(.headline)
                     .bold()
@@ -142,7 +140,7 @@ struct ContentView: View {
                     }
                 }
                 
-                // Button Colour Timer
+                // Button color timer
                 .onReceive(colorTimer) { _ in
                     if !gameOver {
                         let colors: [Color] = [.green, .gray, .blue]
@@ -153,13 +151,11 @@ struct ContentView: View {
         }
     }
     
-    // Tap Logic
+    // game logic
     func handleTap() {
         let now = Date()
-        
         if let lastTap = lastTapTime {
             let diff = now.timeIntervalSince(lastTap)
-            
             if diff <= 0.5 {
                 multiplier += 1
             } else {
@@ -168,7 +164,6 @@ struct ContentView: View {
         }
         
         lastTapTime = now
-        
         if buttonColor == .green {
             score += 2 * multiplier
         } else if buttonColor == .gray {
@@ -178,7 +173,7 @@ struct ContentView: View {
         }
     }
     
-    // Reset Game
+    // reset game
     func resetGame() {
         score = 0
         timeRemaining = 10
@@ -190,5 +185,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    TapFrenzyView()
 }
