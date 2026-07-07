@@ -19,6 +19,10 @@
 		E715B1EE2FFCFE8B0065AD8B /* QuizRushGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1E22FFCFE8B0065AD8B /* QuizRushGameView.swift */; };
 		E715B1EF2FFCFE8B0065AD8B /* TapFrenzyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1E32FFCFE8B0065AD8B /* TapFrenzyView.swift */; };
 		E715B1F02FFCFE8B0065AD8B /* TapFrenzyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1E42FFCFE8B0065AD8B /* TapFrenzyVM.swift */; };
+		E715B2032FFD0F580065AD8B /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2022FFD0F580065AD8B /* MainTab.swift */; };
+		E715B2052FFD0FBD0065AD8B /* StatsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2042FFD0FBD0065AD8B /* StatsTab.swift */; };
+		E715B2072FFD10FE0065AD8B /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2062FFD10FE0065AD8B /* MapTab.swift */; };
+		E715B2092FFD115F0065AD8B /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2082FFD115F0065AD8B /* SettingsTab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		E715B1E22FFCFE8B0065AD8B /* QuizRushGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushGameView.swift; sourceTree = "<group>"; };
 		E715B1E32FFCFE8B0065AD8B /* TapFrenzyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyView.swift; sourceTree = "<group>"; };
 		E715B1E42FFCFE8B0065AD8B /* TapFrenzyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyVM.swift; sourceTree = "<group>"; };
+		E715B2022FFD0F580065AD8B /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
+		E715B2042FFD0FBD0065AD8B /* StatsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTab.swift; sourceTree = "<group>"; };
+		E715B2062FFD10FE0065AD8B /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
+		E715B2082FFD115F0065AD8B /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
 		E78634112FD41AFF00B1F430 /* ios practicals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios practicals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +114,10 @@
 			isa = PBXGroup;
 			children = (
 				E715B1DE2FFCFE8B0065AD8B /* HomeView.swift */,
+				E715B2022FFD0F580065AD8B /* MainTab.swift */,
+				E715B2042FFD0FBD0065AD8B /* StatsTab.swift */,
+				E715B2062FFD10FE0065AD8B /* MapTab.swift */,
+				E715B2082FFD115F0065AD8B /* SettingsTab.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -226,13 +238,17 @@
 				E715B1E62FFCFE8B0065AD8B /* QuizService.swift in Sources */,
 				E715B1E72FFCFE8B0065AD8B /* QuizViewModel.swift in Sources */,
 				E715B1E82FFCFE8B0065AD8B /* Game2- LevelProgression.swift in Sources */,
+				E715B2092FFD115F0065AD8B /* SettingsTab.swift in Sources */,
+				E715B2072FFD10FE0065AD8B /* MapTab.swift in Sources */,
 				E715B1E92FFCFE8B0065AD8B /* Game2-CardModel.swift in Sources */,
 				E715B1EA2FFCFE8B0065AD8B /* HomeView.swift in Sources */,
 				E715B1EB2FFCFE8B0065AD8B /* ios_practicalsApp.swift in Sources */,
+				E715B2032FFD0F580065AD8B /* MainTab.swift in Sources */,
 				E715B1EC2FFCFE8B0065AD8B /* LightItUpView.swift in Sources */,
 				E715B1ED2FFCFE8B0065AD8B /* LightItUpVM.swift in Sources */,
 				E715B1EE2FFCFE8B0065AD8B /* QuizRushGameView.swift in Sources */,
 				E715B1EF2FFCFE8B0065AD8B /* TapFrenzyView.swift in Sources */,
+				E715B2052FFD0FBD0065AD8B /* StatsTab.swift in Sources */,
 				E715B1F02FFCFE8B0065AD8B /* TapFrenzyVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
