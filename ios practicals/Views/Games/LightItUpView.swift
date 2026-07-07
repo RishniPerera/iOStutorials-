@@ -3,6 +3,7 @@ import Combine
 
 struct LightItUpView: View {
     @StateObject private var game = LightItUpVM()
+    @EnvironmentObject var gameSession: GameSession
     
     // game timer
     let gameTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -67,8 +68,20 @@ struct LightItUpView: View {
                             .cornerRadius(10)
                     }
                 }
-            }
-            
+                .onAppear {
+
+
+                        gameSession.saveScore(
+                            gameName: "Light It Up",
+                            score: game.score
+                        )
+
+
+                    }
+
+
+                }
+
             Spacer()
             
         }
@@ -82,4 +95,5 @@ struct LightItUpView: View {
             
 #Preview {
     LightItUpView()
+        .environmentObject(GameSession())
 }

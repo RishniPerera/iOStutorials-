@@ -10,6 +10,7 @@ import SwiftUI
 struct QuizRushView: View {
 
     @StateObject private var viewModel = QuizViewModel()
+    @EnvironmentObject var gameSession: GameSession
 
     var body: some View {
 
@@ -30,21 +31,27 @@ struct QuizRushView: View {
                 case .loaded:
 
                     if viewModel.quizFinished {
-
-                        VStack(spacing: 20) {
-
+                        VStack(spacing:20) {
                             Text("Quiz Finished!")
                                 .font(.largeTitle)
                                 .bold()
-
                             Text("Final Score")
-
                             Text("\(viewModel.score)")
-                                .font(.system(size: 50))
+                                .font(.system(size:50))
                                 .bold()
-                        }
 
-                    } else if let question = viewModel.currentQuestion {
+                        }
+                        .onAppear {
+
+
+                            gameSession.saveScore(
+                                gameName:"Quiz Rush",
+                                score:viewModel.score
+                            )
+                        }
+                    }
+                    
+                    else if let question = viewModel.currentQuestion {
 
                         VStack(spacing: 20) {
 
@@ -129,4 +136,6 @@ struct QuizRushView: View {
 
 #Preview {
     QuizRushView()
+        .environmentObject(GameSession())
+
 }

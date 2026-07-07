@@ -10,6 +10,7 @@ import Combine
 
 struct TapFrenzyView: View {
     @StateObject private var game = TapFrenzyVM()
+    @EnvironmentObject var gameSession: GameSession
     @State private var score = 0
     @State private var timeRemaining = 10
     @State private var gameOver = false
@@ -175,6 +176,11 @@ struct TapFrenzyView: View {
     
     // reset game
     func resetGame() {
+        gameSession.saveScore(
+                gameName: "Tap Frenzy",
+                score: score
+            )
+
         score = 0
         timeRemaining = 10
         multiplier = 1
@@ -186,4 +192,5 @@ struct TapFrenzyView: View {
 
 #Preview {
     TapFrenzyView()
+        .environmentObject(GameSession())
 }

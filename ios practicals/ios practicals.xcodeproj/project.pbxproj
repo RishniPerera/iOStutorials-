@@ -23,6 +23,8 @@
 		E715B2052FFD0FBD0065AD8B /* StatsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2042FFD0FBD0065AD8B /* StatsTab.swift */; };
 		E715B2072FFD10FE0065AD8B /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2062FFD10FE0065AD8B /* MapTab.swift */; };
 		E715B2092FFD115F0065AD8B /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2082FFD115F0065AD8B /* SettingsTab.swift */; };
+		E715B20B2FFD164B0065AD8B /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B20A2FFD164B0065AD8B /* GameSession.swift */; };
+		E715B20D2FFD17AA0065AD8B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B20C2FFD17AA0065AD8B /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		E715B2042FFD0FBD0065AD8B /* StatsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTab.swift; sourceTree = "<group>"; };
 		E715B2062FFD10FE0065AD8B /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
 		E715B2082FFD115F0065AD8B /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
+		E715B20A2FFD164B0065AD8B /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		E715B20C2FFD17AA0065AD8B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E78634112FD41AFF00B1F430 /* ios practicals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios practicals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,6 +82,7 @@
 				E715B1DD2FFCFE8B0065AD8B /* Game2-CardModel.swift */,
 				E715B1DC2FFCFE8B0065AD8B /* Game2- LevelProgression.swift */,
 				E715B1D72FFCFE8B0065AD8B /* QuizModels.swift */,
+				E715B20A2FFD164B0065AD8B /* GameSession.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 		E715B2012FFD053D0065AD8B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E715B20C2FFD17AA0065AD8B /* ResultView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -243,7 +249,9 @@
 				E715B1E92FFCFE8B0065AD8B /* Game2-CardModel.swift in Sources */,
 				E715B1EA2FFCFE8B0065AD8B /* HomeView.swift in Sources */,
 				E715B1EB2FFCFE8B0065AD8B /* ios_practicalsApp.swift in Sources */,
+				E715B20B2FFD164B0065AD8B /* GameSession.swift in Sources */,
 				E715B2032FFD0F580065AD8B /* MainTab.swift in Sources */,
+				E715B20D2FFD17AA0065AD8B /* ResultView.swift in Sources */,
 				E715B1EC2FFCFE8B0065AD8B /* LightItUpView.swift in Sources */,
 				E715B1ED2FFCFE8B0065AD8B /* LightItUpVM.swift in Sources */,
 				E715B1EE2FFCFE8B0065AD8B /* QuizRushGameView.swift in Sources */,

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ios_practicalsApp: App {
+    @StateObject var gameSession = GameSession()
     var body: some Scene {
         WindowGroup {
             MainTab()
+                .environmentObject(gameSession)
         }
     }
 }

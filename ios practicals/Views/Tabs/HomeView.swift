@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var gameSession: GameSession
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 25) {
@@ -18,6 +20,14 @@ struct HomeView: View {
 
                 Text("Select a game")
                     .foregroundColor(.gray)
+                Button("Test Save Score") {
+
+
+                    gameSession.saveScore(
+                        gameName: "Quiz Rush",
+                        score: 45
+                    )
+                }
 
 
                 NavigationLink {
