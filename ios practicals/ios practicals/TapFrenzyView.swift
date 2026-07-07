@@ -1,22 +1,71 @@
 //
-//  ios_practicalsApp.swift
+//  ContentView.swift
 //  ios practicals
 //
 //  Created by Student 1 on 2026-06-06.
 //
-
 import SwiftUI
-import Combine
 
-struct TapFrenzyView: View {
+<<<<<<<< HEAD:ios practicals/ios practicals/ContentView.swift
+struct ContentView: View {
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 30) {
+                Spacer()
+                
+                // App Title
+                VStack(spacing: 8) {
+                    Text("🕹️ Game Hub ")
+                        .font(.system(size: 36, weight: .black, design: .rounded))
+                    Text("Select a game mode to begin")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+                // Navigation Buttons
+                VStack(spacing: 20) {
+                    NavigationLink(destination: TapFrenzyView()) {
+                        MenuButtonView(title: "🔥 Tap Frenzy", subtitle: "Tap to score high", color: .orange)
+                    }
+                    
+                    NavigationLink(destination: LightItUpView()) {
+                        MenuButtonView(title: "⚡ Light It Up", subtitle: "Tap before go dark", color: .blue)
+                    }
+                }
+                .padding(.horizontal, 30)
+                
+                Spacer()
+            }
+        }
+    }
+}
+
+// Reusable custom button style for a polished look
+struct MenuButtonView: View {
+    let title: String
+    let subtitle: String
+    let color: Color
     
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(.white)
+                Text(subtitle)
+                    .font(.footnote)
+                    .foregroundColor(.white.opacity(0.8))
+========
+struct TapFrenzyView: View {
+    @StateObject private var game = TapFrenzyVM()
     @State private var score = 0
     @State private var timeRemaining = 10
     @State private var gameOver = false
-    
     @State private var multiplier = 1
     @State private var lastTapTime: Date? = nil
-    
     @State private var buttonColor: Color = .blue
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -38,12 +87,12 @@ struct TapFrenzyView: View {
                 // game over screen
                 VStack(spacing: 25) {
                     
-                    Text("💀 GAME OVER 💀")
+                    Text("GAME OVER !")
                         .font(.system(size: 40))
                         .bold()
                         .foregroundColor(.red)
                     
-                    Text("🏆 Final Score")
+                    Text("Final Score")
                         .font(.title)
                         .foregroundColor(.white)
                     
@@ -68,7 +117,7 @@ struct TapFrenzyView: View {
                 // main game screen
                 VStack(spacing: 30) {
                     
-                    Text("🎮 Tap Frenzy 🎮")
+                    Text("Tap Frenzy ")
                         .font(.system(size: 40, weight: .heavy))
                         .foregroundColor(.white)
                     
@@ -79,14 +128,14 @@ struct TapFrenzyView: View {
                     HStack(spacing: 20) {
                         
                         VStack {
-                            Text("🏆 Score")
+                            Text("Score")
                             Text("\(score)")
                                 .font(.title)
                                 .bold()
                         }
                         
                         VStack {
-                            Text("⏰ Time")
+                            Text("Time")
                             Text("\(timeRemaining)")
                                 .font(.title)
                                 .bold()
@@ -97,7 +146,7 @@ struct TapFrenzyView: View {
                     .background(.black.opacity(0.3))
                     .cornerRadius(15)
                     
-                    Text("🔥 Combo x\(multiplier)")
+                    Text("Combo x\(multiplier)")
                         .font(.title2)
                         .bold()
                         .foregroundColor(.yellow)
@@ -122,10 +171,10 @@ struct TapFrenzyView: View {
                     
                     Text(
                         buttonColor == .green ?
-                        "💚 BONUS!" :
+                        "BONUS!" :
                         buttonColor == .gray ?
-                        "🩶 PENALTY!" :
-                        "💙 NORMAL"
+                        "PENALTY!" :
+                        "NORMAL"
                     )
                     .font(.headline)
                     .bold()
@@ -142,24 +191,33 @@ struct TapFrenzyView: View {
                     }
                 }
                 
-                // Button Colour Timer
+                // Button color timer
                 .onReceive(colorTimer) { _ in
                     if !gameOver {
                         let colors: [Color] = [.green, .gray, .blue]
                         buttonColor = colors.randomElement() ?? .blue
                     }
                 }
+>>>>>>>> main:ios practicals/ios practicals/TapFrenzyView.swift
             }
+            Spacer()
+            Image(systemName: "chevron.right")
+                .foregroundColor(.white)
+                .font(.title2)
         }
+<<<<<<<< HEAD:ios practicals/ios practicals/ContentView.swift
+        .padding()
+        .background(color.gradient)
+        .cornerRadius(15)
+        .shadow(color: color.opacity(0.4), radius: 8, x: 0, y: 4)
+========
     }
     
-    // Tap Logic
+    // game logic
     func handleTap() {
         let now = Date()
-        
         if let lastTap = lastTapTime {
             let diff = now.timeIntervalSince(lastTap)
-            
             if diff <= 0.5 {
                 multiplier += 1
             } else {
@@ -168,7 +226,6 @@ struct TapFrenzyView: View {
         }
         
         lastTapTime = now
-        
         if buttonColor == .green {
             score += 2 * multiplier
         } else if buttonColor == .gray {
@@ -178,7 +235,7 @@ struct TapFrenzyView: View {
         }
     }
     
-    // Reset Game
+    // reset game
     func resetGame() {
         score = 0
         timeRemaining = 10
@@ -186,6 +243,7 @@ struct TapFrenzyView: View {
         lastTapTime = nil
         buttonColor = .blue
         gameOver = false
+>>>>>>>> main:ios practicals/ios practicals/TapFrenzyView.swift
     }
 }
 
