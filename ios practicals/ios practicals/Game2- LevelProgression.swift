@@ -51,7 +51,7 @@ enum Level: String, CaseIterable {
         }
     }
     
-    // Custom feature requested: Distinct glow color per tier escalation
+    // glow color per tier escalation
     var glowColor: Color {
         switch self {
         case .L1: return .green
