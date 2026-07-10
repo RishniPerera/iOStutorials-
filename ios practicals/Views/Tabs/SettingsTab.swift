@@ -19,7 +19,11 @@ struct SettingsTab: View {
                 "Enable Notifications",
                 isOn: $notifications
             )
+            Button("Send Test Notification") {
 
+                            NotificationService.shared.sendTestNotification()
+
+                        }
             Button("Reset Scores") {
                 // later we add reset logic
             }

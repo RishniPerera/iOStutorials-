@@ -26,6 +26,7 @@
 		E715B20B2FFD164B0065AD8B /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B20A2FFD164B0065AD8B /* GameSession.swift */; };
 		E715B20D2FFD17AA0065AD8B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B20C2FFD17AA0065AD8B /* ResultView.swift */; };
 		E7FB0BD13000A7D300D9DFEF /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FB0BD03000A7D300D9DFEF /* LocationService.swift */; };
+		E7FB0BD53001060400D9DFEF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FB0BD43001060400D9DFEF /* NotificationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		E715B20C2FFD17AA0065AD8B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E78634112FD41AFF00B1F430 /* ios practicals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios practicals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FB0BD03000A7D300D9DFEF /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		E7FB0BD43001060400D9DFEF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -104,6 +106,7 @@
 			children = (
 				E715B1D82FFCFE8B0065AD8B /* QuizService.swift */,
 				E7FB0BD03000A7D300D9DFEF /* LocationService.swift */,
+				E7FB0BD43001060400D9DFEF /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				E715B2072FFD10FE0065AD8B /* MapTab.swift in Sources */,
 				E7FB0BD13000A7D300D9DFEF /* LocationService.swift in Sources */,
 				E715B1E92FFCFE8B0065AD8B /* Game2-CardModel.swift in Sources */,
+				E7FB0BD53001060400D9DFEF /* NotificationService.swift in Sources */,
 				E715B1EA2FFCFE8B0065AD8B /* HomeView.swift in Sources */,
 				E715B1EB2FFCFE8B0065AD8B /* ios_practicalsApp.swift in Sources */,
 				E715B20B2FFD164B0065AD8B /* GameSession.swift in Sources */,

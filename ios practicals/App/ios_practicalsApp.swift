@@ -11,6 +11,9 @@ import SwiftUI
 struct ios_practicalsApp: App {
     @StateObject var gameSession = GameSession()
     @StateObject var locationService = LocationService()
+    init() {
+           NotificationService.shared.requestPermission()
+       }
     var body: some Scene {
         WindowGroup {
             MainTab()
