@@ -4,7 +4,8 @@ import Combine
 struct LightItUpView: View {
     @StateObject private var game = LightItUpVM()
     @EnvironmentObject var gameSession: GameSession
-    
+    @EnvironmentObject var locationService: LocationService
+  
     // game timer
     let gameTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -48,6 +49,8 @@ struct LightItUpView: View {
                 }
                 .padding()
                 
+                
+                
             } else {
                 // Game Over Screen
                 VStack(spacing: 15) {
@@ -70,17 +73,21 @@ struct LightItUpView: View {
                 }
                 .onAppear {
 
-
+                    if let latitude = locationService.latitude,
+                       let longitude = locationService.longitude {
                         gameSession.saveScore(
                             gameName: "Light It Up",
-                            score: game.score
-                        )
+                            score: game.score,
+                            latitude: latitude,
+                            longitude: longitude
+                                                    )
 
+                                                } else {
 
-                    }
-
-
-                }
+                                                    print("Location not available yet")
+                                                }
+                                            }
+                                        }
 
             Spacer()
             

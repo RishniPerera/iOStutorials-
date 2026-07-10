@@ -19,16 +19,38 @@ class GameSession: ObservableObject {
         loadScores()
     }
 
-    func saveScore(gameName: String, score: Int) {
+    func saveScore(
+           gameName: String,
+           score: Int,
+           latitude: Double,
+           longitude: Double
+       ) {  let result = ResultView(
+        gameName: gameName,
+        score: score,
+        latitude: latitude,
+        longitude: longitude
+    )
+           games.append(result)
+               print("Game:", result.gameName)
+               print("Score:", result.score)
+               print("Latitude:", result.latitude)
+               print("Longitude:", result.longitude)
+               print("Total Games:", games.count)
+           
+         //  print("Saving game:", gameName)
+         //  print("Saving location:", latitude, longitude)
+         //  print("Games count after save:", games.count)
+           
+         //  let newGame = ResultView(
+          //     gameName: gameName,
+          //     score: score,
+          //     latitude: latitude,
+          //     longitude: longitude
+          //
+        
 
-
-        let newGame = ResultView(
-            gameName: gameName,
-            score: score
-        )
-
-
-        games.append(newGame)
+        //games.append(newGame)
+         //  print("Games after append:", games.count)
 
         saveScores()
     }
@@ -44,9 +66,6 @@ class GameSession: ObservableObject {
             )
         }
     }
-
-
-
 
     func loadScores() {
 
@@ -64,12 +83,21 @@ class GameSession: ObservableObject {
         ){
 
             games = decoded
-        }
-    }
+            print("Loaded Games:", games.count)
+            for game in games {
+                        print(game.gameName)
+                        print(game.score)
+                        print(game.latitude)
+                        print(game.longitude)
+                    }
 
+                } else {
 
-
-
+                    print("Failed to load saved games.")
+                }
+            }
+    
+    
     func resetScores(){
 
         games.removeAll()

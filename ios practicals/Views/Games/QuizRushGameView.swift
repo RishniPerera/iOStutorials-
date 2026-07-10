@@ -11,6 +11,7 @@ struct QuizRushView: View {
 
     @StateObject private var viewModel = QuizViewModel()
     @EnvironmentObject var gameSession: GameSession
+    @EnvironmentObject var locationService: LocationService
 
     var body: some View {
 
@@ -43,11 +44,28 @@ struct QuizRushView: View {
                         }
                         .onAppear {
 
-
+                            if let latitude = locationService.latitude,
+                            let longitude = locationService.longitude {
                             gameSession.saveScore(
                                 gameName:"Quiz Rush",
-                                score:viewModel.score
-                            )
+                                score:viewModel.score,
+                                latitude: latitude,
+                                       longitude: longitude
+                                   )
+
+                               } else {
+
+                                   print("Location not available yet")
+                               }
+                                
+                            
+                            
+                            
+                            
+                            
+                                //latitude: locationService.latitude ?? 0,
+                                //longitude: locationService.longitude ?? 0
+                           // )
                         }
                     }
                     

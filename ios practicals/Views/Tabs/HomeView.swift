@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var gameSession: GameSession
+    @EnvironmentObject var locationService: LocationService
     
     var body: some View {
         NavigationStack {
@@ -25,8 +26,9 @@ struct HomeView: View {
 
                     gameSession.saveScore(
                         gameName: "Quiz Rush",
-                        score: 45
-                    )
+                        score: 45,
+                        latitude: locationService.latitude ?? 0,
+                        longitude: locationService.longitude ?? 0)
                 }
 
 

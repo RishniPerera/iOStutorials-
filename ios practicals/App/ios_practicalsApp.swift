@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct ios_practicalsApp: App {
     @StateObject var gameSession = GameSession()
+    @StateObject var locationService = LocationService()
     var body: some Scene {
         WindowGroup {
             MainTab()
                 .environmentObject(gameSession)
+                .environmentObject(locationService)
         }
     }
 }

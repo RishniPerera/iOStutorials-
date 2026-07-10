@@ -11,6 +11,8 @@ import Combine
 struct TapFrenzyView: View {
     @StateObject private var game = TapFrenzyVM()
     @EnvironmentObject var gameSession: GameSession
+    @EnvironmentObject var locationService: LocationService
+    
     @State private var score = 0
     @State private var timeRemaining = 10
     @State private var gameOver = false
@@ -176,11 +178,19 @@ struct TapFrenzyView: View {
     
     // reset game
     func resetGame() {
+        if let latitude = locationService.latitude,
+        let longitude = locationService.longitude {
         gameSession.saveScore(
                 gameName: "Tap Frenzy",
-                score: score
-            )
+                score: score,
+                latitude: latitude,
+                longitude: longitude
+        )
 
+           } else {
+
+               print("Location not available yet")
+           }
         score = 0
         timeRemaining = 10
         multiplier = 1
