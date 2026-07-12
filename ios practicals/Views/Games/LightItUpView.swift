@@ -5,7 +5,7 @@ struct LightItUpView: View {
     @StateObject private var game = LightItUpVM()
     @EnvironmentObject var gameSession: GameSession
     @EnvironmentObject var locationService: LocationService
-  
+    
     // game timer
     let gameTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -71,24 +71,8 @@ struct LightItUpView: View {
                             .cornerRadius(10)
                     }
                 }
-                .onAppear {
-
-                    if let latitude = locationService.latitude,
-                       let longitude = locationService.longitude {
-                        gameSession.saveScore(
-                            gameName: "Light It Up",
-                            score: game.score,
-                            latitude: latitude,
-                            longitude: longitude
-                                                    )
-
-                                                } else {
-
-                                                    print("Location not available yet")
-                                                }
-                                            }
-                                        }
-
+                
+            }
             Spacer()
             
         }
@@ -97,10 +81,25 @@ struct LightItUpView: View {
         
         // game timer
         .onReceive(gameTimer) { _ in
-            game.updateTimer()
-        }}}
             
-#Preview {
-    LightItUpView()
-        .environmentObject(GameSession())
-}
+            let wasActive = game.isGameActive
+            game.updateTimer()
+            
+            if wasActive && !game.isGameActive {
+                gameSession.saveScore(
+                    gameName: "Light It Up",
+                    score: game.score,
+                    latitude: locationService.latitude ?? 6.9271,
+                    longitude: locationService.longitude ?? 79.8612
+                )
+                
+                print("Light It Up saved")
+            }
+        }
+    }}
+    #Preview {
+        LightItUpView()
+            .environmentObject(GameSession())
+            .environmentObject(LocationService())
+
+    }

@@ -140,6 +140,7 @@ struct TapFrenzyView: View {
                         timeRemaining -= 1
                     } else {
                         gameOver = true
+                        saveGameResult()
                     }
                 }
                 
@@ -176,21 +177,21 @@ struct TapFrenzyView: View {
         }
     }
     
-    // reset game
-    func resetGame() {
-        if let latitude = locationService.latitude,
-        let longitude = locationService.longitude {
+    func saveGameResult() {
+
         gameSession.saveScore(
-                gameName: "Tap Frenzy",
-                score: score,
-                latitude: latitude,
-                longitude: longitude
+            gameName: "Tap Frenzy",
+            score: score,
+            latitude: locationService.latitude ?? 6.9271,
+            longitude: locationService.longitude ?? 79.8612
         )
 
-           } else {
+        print("Tap Frenzy saved")
 
-               print("Location not available yet")
-           }
+    }
+    
+    // reset game
+    func resetGame() {
         score = 0
         timeRemaining = 10
         multiplier = 1

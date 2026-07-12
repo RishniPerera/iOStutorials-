@@ -43,31 +43,16 @@ struct QuizRushView: View {
 
                         }
                         .onAppear {
-
-                            if let latitude = locationService.latitude,
-                            let longitude = locationService.longitude {
                             gameSession.saveScore(
-                                gameName:"Quiz Rush",
-                                score:viewModel.score,
-                                latitude: latitude,
-                                       longitude: longitude
-                                   )
+                            gameName: "Quiz Rush",
+                            score:viewModel.score,
+                            latitude: locationService.latitude ?? 6.9271,
+                            longitude: locationService.longitude ?? 79.8612)
 
-                               } else {
-
-                                   print("Location not available yet")
+                            print("Quiz Rush saved")
                                }
-                                
-                            
-                            
-                            
-                            
-                            
-                                //latitude: locationService.latitude ?? 0,
-                                //longitude: locationService.longitude ?? 0
-                           // )
                         }
-                    }
+                    
                     
                     else if let question = viewModel.currentQuestion {
 

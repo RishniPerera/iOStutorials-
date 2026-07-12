@@ -21,16 +21,7 @@ struct HomeView: View {
 
                 Text("Select a game")
                     .foregroundColor(.gray)
-                Button("Test Save Score") {
-
-
-                    gameSession.saveScore(
-                        gameName: "Quiz Rush",
-                        score: 45,
-                        latitude: locationService.latitude ?? 0,
-                        longitude: locationService.longitude ?? 0)
-                }
-
+                
 
                 NavigationLink {
                     TapFrenzyView()

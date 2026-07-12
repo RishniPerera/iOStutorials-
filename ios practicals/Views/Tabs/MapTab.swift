@@ -31,7 +31,8 @@ struct MapTab: View {
                                 ForEach(gameSession.games) { game in
 
                                     Marker(
-                                        game.gameName,
+                                        "\(game.gameName) - \(game.score)",//to represent marker with scores which game played
+                                        //game.gameName,
                                         coordinate: CLLocationCoordinate2D(
                                             latitude: game.latitude,
                                             longitude: game.longitude
