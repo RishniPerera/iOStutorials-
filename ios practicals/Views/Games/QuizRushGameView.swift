@@ -40,6 +40,25 @@ struct QuizRushView: View {
                             Text("\(viewModel.score)")
                                 .font(.system(size:50))
                                 .bold()
+                            
+                        
+                            //sharelink
+                            ShareLink(
+                                       item: "HI,It's Rishni, I scored \(viewModel.score) in Quiz Rush!"
+                                   ) {
+
+                                       Label(
+                                           "Share Score",
+                                           systemImage: "square.and.arrow.up"
+                                       )
+                                       .font(.headline)
+                                       .padding()
+                                       .frame(width:200)
+                                       .background(Color.blue)
+                                       .foregroundColor(.white)
+                                       .cornerRadius(10)
+
+                                   }
 
                         }
                         .onAppear {

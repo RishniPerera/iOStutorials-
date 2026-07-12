@@ -58,8 +58,26 @@ struct LightItUpView: View {
                         .font(.largeTitle).bold()
                     
                     Text("High Score: \(game.highScore)")
-                        .font(.headline)
+                    .font(.headline)
                     
+                    
+                    //share link
+                    ShareLink(
+                        item: "I scored \(game.highScore) in Light It Up!"
+                    ) {
+
+                        Label(
+                            "Share Score",
+                            systemImage: "square.and.arrow.up"
+                        )
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+
+                    }
+                    
+                
                     Button{game.startGame ()}
                     label: {
                         Text(game.timeRemaining == 0 ? "Play Again" : "Start Game")

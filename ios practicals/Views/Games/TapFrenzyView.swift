@@ -51,9 +51,25 @@ struct TapFrenzyView: View {
                     Text("\(score)")
                         .font(.system(size: 50))
                         .bold()
-                        .foregroundColor(.yellow)
+                        
                     
-                    Button(action: resetGame) {
+                    //sharelink
+                    ShareLink(
+                        item: "I scored \(score) in Tap Frenzy!"
+                    ) {
+
+                        Label(
+                            "Share Score",
+                            systemImage: "square.and.arrow.up"
+                        )
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+
+                    }
+                
+                        Button(action: resetGame) {
                         Text("Play Again")
                             .font(.title2)
                             .bold()
