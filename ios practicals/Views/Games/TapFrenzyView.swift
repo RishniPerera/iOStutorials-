@@ -10,6 +10,9 @@ import Combine
 
 struct TapFrenzyView: View {
     @StateObject private var game = TapFrenzyVM()
+    @EnvironmentObject var gameSession: GameSession
+    @EnvironmentObject var locationService: LocationService
+    
     @State private var score = 0
     @State private var timeRemaining = 10
     @State private var gameOver = false
@@ -48,9 +51,26 @@ struct TapFrenzyView: View {
                     Text("\(score)")
                         .font(.system(size: 50))
                         .bold()
-                        .foregroundColor(.yellow)
+                        ScoreBadge(score: score)
+                        
                     
-                    Button(action: resetGame) {
+                    //sharelink
+                    ShareLink(
+                        item: "I scored \(score) in Tap Frenzy!"
+                    ) {
+
+                        Label(
+                            "Share Score",
+                            systemImage: "square.and.arrow.up"
+                        )
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+
+                    }
+                
+                        Button(action: resetGame) {
                         Text("Play Again")
                             .font(.title2)
                             .bold()
@@ -137,6 +157,7 @@ struct TapFrenzyView: View {
                         timeRemaining -= 1
                     } else {
                         gameOver = true
+                        saveGameResult()
                     }
                 }
                 
@@ -173,6 +194,19 @@ struct TapFrenzyView: View {
         }
     }
     
+    func saveGameResult() {
+
+        gameSession.saveScore(
+            gameName: "Tap Frenzy",
+            score: score,
+            latitude: locationService.latitude ?? 6.9271,
+            longitude: locationService.longitude ?? 79.8612
+        )
+
+        print("Tap Frenzy saved")
+
+    }
+    
     // reset game
     func resetGame() {
         score = 0
@@ -186,4 +220,5 @@ struct TapFrenzyView: View {
 
 #Preview {
     TapFrenzyView()
+        .environmentObject(GameSession())
 }

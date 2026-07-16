@@ -1,0 +1,28 @@
+//
+//  PlayHub.swift
+//  ios practicals
+//
+//  Created by Student 1 on 2026-06-06.
+//
+
+import SwiftUI
+
+@main
+struct PlayHub: App {
+    @AppStorage("darkMode") var darkMode = false
+    @StateObject var gameSession = GameSession()
+    @StateObject var locationService = LocationService()
+    
+    
+    init() {
+           NotificationService.shared.requestPermission()
+       }
+    var body: some Scene {
+        WindowGroup {
+            MainTab()
+                .environmentObject(gameSession)
+                .environmentObject(locationService)
+                .preferredColorScheme(darkMode ? .dark : .light)
+        }
+    }
+}
