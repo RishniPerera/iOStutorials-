@@ -40,6 +40,7 @@ struct QuizRushView: View {
                             Text("\(viewModel.score)")
                                 .font(.system(size:50))
                                 .bold()
+                                 ScoreBadge(score: viewModel.score)
                             
                         
                             //sharelink

@@ -59,6 +59,7 @@ struct LightItUpView: View {
                     
                     Text("High Score: \(game.highScore)")
                     .font(.headline)
+                    ScoreBadge(score: game.score)
                     
                     
                     //share link

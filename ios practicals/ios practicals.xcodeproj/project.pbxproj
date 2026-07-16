@@ -25,6 +25,7 @@
 		E715B2092FFD115F0065AD8B /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B2082FFD115F0065AD8B /* SettingsTab.swift */; };
 		E715B20B2FFD164B0065AD8B /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B20A2FFD164B0065AD8B /* GameSession.swift */; };
 		E715B20D2FFD17AA0065AD8B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B20C2FFD17AA0065AD8B /* ResultView.swift */; };
+		E77E69A830088E1B00FA2AF9 /* ScoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77E69A730088E1B00FA2AF9 /* ScoreBadge.swift */; };
 		E7FB0BD13000A7D300D9DFEF /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FB0BD03000A7D300D9DFEF /* LocationService.swift */; };
 		E7FB0BD53001060400D9DFEF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FB0BD43001060400D9DFEF /* NotificationService.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		E715B2082FFD115F0065AD8B /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
 		E715B20A2FFD164B0065AD8B /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		E715B20C2FFD17AA0065AD8B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		E77E69A730088E1B00FA2AF9 /* ScoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBadge.swift; sourceTree = "<group>"; };
 		E78634112FD41AFF00B1F430 /* ios practicals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios practicals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FB0BD03000A7D300D9DFEF /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		E7FB0BD43001060400D9DFEF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				E715B20C2FFD17AA0065AD8B /* ResultView.swift */,
+				E77E69A730088E1B00FA2AF9 /* ScoreBadge.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				E715B1EE2FFCFE8B0065AD8B /* QuizRushGameView.swift in Sources */,
 				E715B1EF2FFCFE8B0065AD8B /* TapFrenzyView.swift in Sources */,
 				E715B2052FFD0FBD0065AD8B /* StatsTab.swift in Sources */,
+				E77E69A830088E1B00FA2AF9 /* ScoreBadge.swift in Sources */,
 				E715B1F02FFCFE8B0065AD8B /* TapFrenzyVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

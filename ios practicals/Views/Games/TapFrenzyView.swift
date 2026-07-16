@@ -51,6 +51,7 @@ struct TapFrenzyView: View {
                     Text("\(score)")
                         .font(.system(size: 50))
                         .bold()
+                        ScoreBadge(score: score)
                         
                     
                     //sharelink
