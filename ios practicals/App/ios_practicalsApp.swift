@@ -9,8 +9,11 @@ import SwiftUI
 
 @main
 struct ios_practicalsApp: App {
+    @AppStorage("darkMode") var darkMode = false
     @StateObject var gameSession = GameSession()
     @StateObject var locationService = LocationService()
+    
+    
     init() {
            NotificationService.shared.requestPermission()
        }
@@ -19,6 +22,7 @@ struct ios_practicalsApp: App {
             MainTab()
                 .environmentObject(gameSession)
                 .environmentObject(locationService)
+                .preferredColorScheme(darkMode ? .dark : .light)
         }
     }
 }
