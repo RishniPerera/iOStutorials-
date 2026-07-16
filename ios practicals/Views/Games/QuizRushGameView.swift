@@ -14,151 +14,202 @@ struct QuizRushView: View {
     @EnvironmentObject var locationService: LocationService
 
     var body: some View {
+     
+     NavigationStack {
 
-        NavigationStack {
+        ZStack {
+          LinearGradient(
+            colors: [.blue, .purple],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing)
+            .ignoresSafeArea()
 
             Group {
-
-                switch viewModel.state {
+            switch viewModel.state {
                 case .loading:
 
                     VStack(spacing: 20) {
 
                         ProgressView()
-
+                            .scaleEffect(2)
                         Text("Loading Questions...")
-                            .font(.headline)
-                    }
+                            .font(.title2)
+                            .bold()
+                            .foregroundColor(.white) }
+
                 case .loaded:
+                if viewModel.quizFinished {
 
-                    if viewModel.quizFinished {
-                        VStack(spacing:20) {
-                            Text("Quiz Finished!")
-                                .font(.largeTitle)
-                                .bold()
-                            Text("Final Score")
-                            Text("\(viewModel.score)")
-                                .font(.system(size:50))
-                                .bold()
-                                 ScoreBadge(score: viewModel.score)
-                            
-                        
-                            //sharelink
-                            ShareLink(
-                                       item: "HI,It's Rishni, I scored \(viewModel.score) in Quiz Rush!"
-                                   ) {
+                VStack(spacing: 25) {
 
-                                       Label(
-                                           "Share Score",
-                                           systemImage: "square.and.arrow.up"
-                                       )
-                                       .font(.headline)
-                                       .padding()
-                                       .frame(width:200)
-                                       .background(Color.blue)
-                                       .foregroundColor(.white)
-                                       .cornerRadius(10)
+                Image(systemName: "trophy.fill")
+                    .font(.system(size: 70))
+                    .foregroundStyle(.yellow)
 
-                                   }
+                Text("Quiz Completed!")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.white)
 
-                        }
-                        .onAppear {
-                            gameSession.saveScore(
-                            gameName: "Quiz Rush",
-                            score:viewModel.score,
-                            latitude: locationService.latitude ?? 6.9271,
-                            longitude: locationService.longitude ?? 79.8612)
+                Text("Final Score")
+                    .font(.headline)
+                    .foregroundColor(.white)
 
-                            print("Quiz Rush saved")
-                               }
-                        }
-                    
-                    
-                    else if let question = viewModel.currentQuestion {
+                Text("\(viewModel.score)")
+                    .font(.system(size: 55))
+                    .bold()
+                    .foregroundColor(.yellow)
+                ScoreBadge(score: viewModel.score)
 
-                        VStack(spacing: 20) {
+        ShareLink(
+            item: "Hi! I scored \(viewModel.score) in Quiz Rush!") {
 
-                            Text("Question \(viewModel.currentQuestionIndex + 1) of \(viewModel.questions.count)")
-                                .font(.headline)
+            Label("Share Score",
+            systemImage: "square.and.arrow.up")
+            .frame(width: 220,height: 50)
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(15)}
 
-                            Text("Score: \(viewModel.score)")
-                                .font(.headline)
+            Button {
+                Task {
+                await viewModel.loadQuestions()}
 
-                            Text("Streak:  \(viewModel.streak)")
-                                .font(.headline)
-
-                            Divider()
-
-                            Text(question.question)
-                                .font(.title3)
-                                .multilineTextAlignment(.center)
-                                .padding()
-
-                            ForEach(question.allAnswers, id: \.self) { answer in
-
-                                Button {
-
-                                    viewModel.answerSelected(answer)
-
-                                } label: {
-
-                                    Text(answer)
-                                        .frame(maxWidth: .infinity)
-                                        .padding()
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-
-                                }
-
-                            }
-
-                            Spacer()
-
-                        }
-                        .padding()
-
-                    }
-
-
-                case .failed(let message):
-
-                    VStack(spacing: 20) {
-
-                        Image(systemName: "wifi.exclamationmark")
-                            .font(.system(size: 60))
-                            .foregroundColor(.red)
-
-                        Text(message)
-                            .multilineTextAlignment(.center)
-
-                        Button("Retry") {
-
-                            Task {
-                                await viewModel.loadQuestions()
-                            }
-
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
+                } label: {
+                Label( "Play Again",systemImage: "arrow.clockwise")
+                .frame(width:220,height:50)
+                .background(Color.orange)
+                .foregroundColor(.white)
+                .cornerRadius(15) }
                 }
+                .padding()
+                .onAppear {
+
+                gameSession.saveScore(
+                 gameName: "Quiz Rush",
+                 score: viewModel.score,
+                 latitude: locationService.latitude ?? 6.9271,
+                 longitude: locationService.longitude ?? 79.8612)
+                 } }
+
+            else if let question = viewModel.currentQuestion {
+
+            VStack(spacing: 25) {
+              Text("Quiz Rush")
+                .font(.largeTitle)
+                .bold()
+                .foregroundColor(.white)
+
+            HStack(spacing:15) {
+
+            infoCard(title: "Score",value: "\(viewModel.score)",icon: "star.fill")
+
+            infoCard(title: "Streak",value: "\(viewModel.streak)",icon: "flame.fill")
+
+            infoCard(title: "Question",value: "\(viewModel.currentQuestionIndex + 1)/\(viewModel.questions.count)",icon: "questionmark.circle.fill")
 
             }
-            .navigationTitle("Quiz Rush")
+                
+
+            VStack {
+
+            Text(question.question)
+                .font(.title3)
+                .bold()
+                .multilineTextAlignment(.center)
+                .padding()}
+                .frame(maxWidth:.infinity)
+                .background(Color.white)
+                .cornerRadius(20)
+                .shadow(radius:8)
+
+                ForEach(question.allAnswers,id:\.self) { answer in
+
+                Button {
+                    viewModel.answerSelected(answer)
+
+                    } label: {
+                    Text(answer)
+                        .font(.headline)
+                        .frame(maxWidth:.infinity)
+                        .padding()
+                        .background(
+                    LinearGradient(
+                        colors:[.blue,.cyan],
+                        startPoint:.leading,
+                        endPoint:.trailing)
+                        )
+                        .foregroundColor(.white)
+                        .cornerRadius(15)
+                        .shadow(radius:5)}
+                         }
+
+                     Spacer()
+                         }
+                    .padding()}
+
+                    case .failed(let message):
+
+                    VStack(spacing:20) {
+                       Image(systemName:"wifi.exclamationmark")
+                          .font(.system(size:70))
+                          .foregroundColor(.red)
+
+                        Text(message)
+                          .multilineTextAlignment(.center)
+                          .foregroundColor(.white)
+
+                        Button("Retry") {
+                          Task {
+                            await viewModel.loadQuestions()}
+                                }
+                                .buttonStyle(.borderedProminent)
+                                }
+                            }
+                        } }
+                    .navigationBarTitleDisplayMode(.inline)
+                }
+
+                .task {
+
+                    await viewModel.loadQuestions()
+
+                }
+            }}
+
+        extension QuizRushView {
+
+            func infoCard(
+                title:String,
+                value:String,
+                icon:String
+            ) -> some View {
+
+                VStack(spacing:8) {
+
+                    Image(systemName: icon)
+                        .foregroundColor(.yellow)
+
+                    Text(value)
+                        .font(.title2)
+                        .bold()
+
+                    Text(title)
+                        .font(.caption)
+
+                }
+                .foregroundColor(.white)
+                .frame(maxWidth:.infinity)
+                .padding()
+                .background(.white.opacity(0.15))
+                .cornerRadius(15)
+
+            }
         }
+        #Preview {
 
-        .task {
-
-            await viewModel.loadQuestions()
+            QuizRushView()
+                .environmentObject(GameSession())
+                .environmentObject(LocationService())
 
         }
-
-    }
-
-}
-
-#Preview {
-    QuizRushView()
-        .environmentObject(GameSession())
-
-}

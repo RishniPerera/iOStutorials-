@@ -15,110 +15,120 @@ struct LightItUpView: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            // score and timer section
-            HStack {
-                Text("Score: \(game.score)")
-                    .font(.title2).bold()
-                Spacer()
-                Text(" \(game.timeRemaining)s")
-                    .font(.title2).bold()
-                    .foregroundColor(game.timeRemaining <= 10 ? .red : .primary)
-            }
-            .padding(.horizontal)
+        ZStack {
             
+            LinearGradient(
+                colors: [.blue, .purple],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
             
-            //current level
-            Text(game.currentLevel.rawValue)
-                .font(.headline)
-                .foregroundColor(game.currentLevel.glowColor)
-            Spacer()
-            
-            if game.isGameActive {
-                // Game Grid Matrix
-                LazyVGrid(columns: gridColumns, spacing: 15) {
-                    ForEach(0..<game.currentLevel.totalCards, id: \.self) { index in
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(game.litCardIndex == index ? game.currentLevel.glowColor : Color(.systemGray4))
-                            .frame(height: 100)
-                            .shadow(color: game.litCardIndex == index ? game.currentLevel.glowColor.opacity(0.5) : .clear, radius: 8)
-                            .onTapGesture {
-                                game.tapCard(index)
-                            }
-                    }
+            VStack(spacing: 20) {
+                // score and timer section
+                HStack {
+                    Text("Score: \(game.score)")
+                        .font(.title2).bold()
+                    Spacer()
+                    Text(" \(game.timeRemaining)s")
+                        .font(.title2).bold()
+                        .foregroundColor(game.timeRemaining <= 10 ? .red : .primary)
                 }
-                .padding()
+                .padding(.horizontal)
                 
                 
-                
-            } else {
-                // Game Over Screen
-                VStack(spacing: 15) {
-                    Text(game.timeRemaining == 0 ? "Game Over!" : "Light It Up")
-                        .font(.largeTitle).bold()
-                    
-                    Text("High Score: \(game.highScore)")
+                //current level
+                Text(game.currentLevel.rawValue)
                     .font(.headline)
-                    ScoreBadge(score: game.score)
-                    
-                    
-                    //share link
-                    ShareLink(
-                        item: "I scored \(game.highScore) in Light It Up!"
-                    ) {
-
-                        Label(
-                            "Share Score",
-                            systemImage: "square.and.arrow.up"
-                        )
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-
-                    }
-                    
+                    .foregroundColor(.white)
+                Spacer()
                 
-                    Button{game.startGame ()}
-                    label: {
-                        Text(game.timeRemaining == 0 ? "Play Again" : "Start Game")
+                if game.isGameActive {
+                    // Game Grid Matrix
+                    LazyVGrid(columns: gridColumns, spacing: 15) {
+                        ForEach(0..<game.currentLevel.totalCards, id: \.self) { index in
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(game.litCardIndex == index ? game.currentLevel.glowColor : Color(.white.opacity(0.6)))
+                                .frame(height: 100)
+                                .shadow(color: game.litCardIndex == index ? game.currentLevel.glowColor.opacity(0.5) : .clear, radius: 8)
+                                .onTapGesture {
+                                    game.tapCard(index)
+                                }
+                        }
+                    }
+                    .padding()
+                    
+                    
+                    
+                } else {
+                    // Game Over Screen
+                    VStack(spacing: 15) {
+                        Text(game.timeRemaining == 0 ? "Game Over!" : "Light It Up")
+                            .font(.largeTitle).bold()
+                        
+                        Text("High Score: \(game.highScore)")
                             .font(.headline)
-                            .foregroundColor(.white)
+                        ScoreBadge(score: game.score)
+                        
+                        
+                        //share link
+                        ShareLink(
+                            item: "I scored \(game.highScore) in Light It Up!"
+                        ) {
+                            
+                            Label(
+                                "Share Score",
+                                systemImage: "square.and.arrow.up"
+                            )
                             .padding()
-                            .frame(width: 180)
                             .background(Color.blue)
+                            .foregroundColor(.white)
                             .cornerRadius(10)
+                            
+                        }
+                        
+                        
+                        Button{game.startGame ()}
+                        label: {
+                            Text(game.timeRemaining == 0 ? "Play Again" : "Start Game")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(width: 180)
+                                .background(Color.green)
+                                .cornerRadius(10)
+                        }
                     }
+                    
                 }
+                Spacer()
                 
             }
-            Spacer()
+            .padding()
+            .navigationTitle(" Light It Up")
             
-        }
-        .padding()
-        .navigationTitle(" Light It Up")
-        
-        // game timer
-        .onReceive(gameTimer) { _ in
-            
-            let wasActive = game.isGameActive
-            game.updateTimer()
-            
-            if wasActive && !game.isGameActive {
-                gameSession.saveScore(
-                    gameName: "Light It Up",
-                    score: game.score,
-                    latitude: locationService.latitude ?? 6.9271,
-                    longitude: locationService.longitude ?? 79.8612
-                )
+            // game timer
+            .onReceive(gameTimer) { _ in
                 
-                print("Light It Up saved")
+                let wasActive = game.isGameActive
+                game.updateTimer()
+                
+                if wasActive && !game.isGameActive {
+                    gameSession.saveScore(
+                        gameName: "Light It Up",
+                        score: game.score,
+                        latitude: locationService.latitude ?? 6.9271,
+                        longitude: locationService.longitude ?? 79.8612
+                    )
+                    
+                    print("Light It Up saved")
+                }
             }
-        }
-    }}
+        }}}
     #Preview {
         LightItUpView()
             .environmentObject(GameSession())
             .environmentObject(LocationService())
-
+        
     }
+
