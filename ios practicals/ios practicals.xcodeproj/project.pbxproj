@@ -13,7 +13,7 @@
 		E715B1E82FFCFE8B0065AD8B /* Game2- LevelProgression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1DC2FFCFE8B0065AD8B /* Game2- LevelProgression.swift */; };
 		E715B1E92FFCFE8B0065AD8B /* Game2-CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1DD2FFCFE8B0065AD8B /* Game2-CardModel.swift */; };
 		E715B1EA2FFCFE8B0065AD8B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1DE2FFCFE8B0065AD8B /* HomeView.swift */; };
-		E715B1EB2FFCFE8B0065AD8B /* ios_practicalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1DF2FFCFE8B0065AD8B /* ios_practicalsApp.swift */; };
+		E715B1EB2FFCFE8B0065AD8B /* PlayHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1DF2FFCFE8B0065AD8B /* PlayHub.swift */; };
 		E715B1EC2FFCFE8B0065AD8B /* LightItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1E02FFCFE8B0065AD8B /* LightItUpView.swift */; };
 		E715B1ED2FFCFE8B0065AD8B /* LightItUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1E12FFCFE8B0065AD8B /* LightItUpVM.swift */; };
 		E715B1EE2FFCFE8B0065AD8B /* QuizRushGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715B1E22FFCFE8B0065AD8B /* QuizRushGameView.swift */; };
@@ -40,7 +40,7 @@
 		E715B1DC2FFCFE8B0065AD8B /* Game2- LevelProgression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game2- LevelProgression.swift"; sourceTree = "<group>"; };
 		E715B1DD2FFCFE8B0065AD8B /* Game2-CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game2-CardModel.swift"; sourceTree = "<group>"; };
 		E715B1DE2FFCFE8B0065AD8B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		E715B1DF2FFCFE8B0065AD8B /* ios_practicalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_practicalsApp.swift; sourceTree = "<group>"; };
+		E715B1DF2FFCFE8B0065AD8B /* PlayHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHub.swift; sourceTree = "<group>"; };
 		E715B1E02FFCFE8B0065AD8B /* LightItUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpView.swift; sourceTree = "<group>"; };
 		E715B1E12FFCFE8B0065AD8B /* LightItUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpVM.swift; sourceTree = "<group>"; };
 		E715B1E22FFCFE8B0065AD8B /* QuizRushGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushGameView.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		E715B1FA2FFD042B0065AD8B /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E715B1DF2FFCFE8B0065AD8B /* ios_practicalsApp.swift */,
+				E715B1DF2FFCFE8B0065AD8B /* PlayHub.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 				E7FB0BD53001060400D9DFEF /* NotificationService.swift in Sources */,
 				E715B1EA2FFCFE8B0065AD8B /* HomeView.swift in Sources */,
 				E77E69AA3008A66B00FA2AF9 /* PlayerProfile.swift in Sources */,
-				E715B1EB2FFCFE8B0065AD8B /* ios_practicalsApp.swift in Sources */,
+				E715B1EB2FFCFE8B0065AD8B /* PlayHub.swift in Sources */,
 				E715B20B2FFD164B0065AD8B /* GameSession.swift in Sources */,
 				E715B2032FFD0F580065AD8B /* MainTab.swift in Sources */,
 				E715B20D2FFD17AA0065AD8B /* ResultView.swift in Sources */,
