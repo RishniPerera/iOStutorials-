@@ -30,6 +30,13 @@ struct MainTab: View {
                     Text("Map")
                 }
 
+            
+            ProfileTab()
+                    .tabItem {
+                        Label("Profile",
+                        systemImage:"person")
+                    }
+    
             SettingsTab()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
